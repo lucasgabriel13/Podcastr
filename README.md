@@ -2,9 +2,9 @@
 
 ## ✨ Tecnologias Utilizadas
 
-React
-Next.js
-TypeScript
+- React
+- Next.js
+- TypeScript
 
 ## 💻 Projeto
 
