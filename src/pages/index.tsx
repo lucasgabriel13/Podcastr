@@ -1,15 +1,14 @@
-import { GetStaticProps } from 'next';
-import Image from 'next/image';
-import Head from 'next/head';
-import Link from 'next/link';
-import { format, parseISO } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
-import { api } from '../services/api';
-import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
+import { GetStaticProps } from "next";
+import Image from "next/image";
+import Head from "next/head";
+import Link from "next/link";
+import { format, parseISO } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
+import { api } from "../services/api";
+import { convertDurationToTimeString } from "../utils/convertDurationToTimeString";
 
-import styles from './home.module.scss';
-import { usePlayer } from '../contexts/PlayerContext';
-
+import styles from "./home.module.scss";
+import { usePlayer } from "../contexts/PlayerContext";
 
 type Episode = {
   id: string;
@@ -20,15 +19,14 @@ type Episode = {
   durationAsString: string;
   url: string;
   publishedAt: string;
-}
+};
 
 type HomeProps = {
   latestEpisodes: Episode[];
   allEpisodes: Episode[];
-}
+};
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-
   const { playList } = usePlayer();
   const episodeList = [...latestEpisodes, ...allEpisodes];
 
@@ -60,14 +58,16 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   <span>{episode.durationAsString}</span>
                 </div>
 
-                <button type="button" onClick={() => playList(episodeList, index)}>
+                <button
+                  type="button"
+                  onClick={() => playList(episodeList, index)}
+                >
                   <img src="/play-green.svg" alt="Tocar episódio" />
                 </button>
               </li>
-            )
+            );
           })}
         </ul>
-
       </section>
       <section className={styles.allEpisodes}>
         <h2>Todos episódios</h2>
@@ -104,41 +104,50 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   <td style={{ width: 100 }}>{episode.publishedAt}</td>
                   <td>{episode.durationAsString}</td>
                   <td>
-                    <button type="button" onClick={() => playList(episodeList, index + latestEpisodes.length)}>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        playList(episodeList, index + latestEpisodes.length)
+                      }
+                    >
                       <img src="/play-green.svg" alt="Tocar episódio" />
                     </button>
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </table>
       </section>
     </div>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get('episodes', {
+  const { data } = await api.get("/", {
     params: {
       _limit: 12,
-      _sort: 'published_at',
-      _order: 'desc'
-    }
+      _sort: "published_at",
+      _order: "desc",
+    },
   });
 
-  const episodes = data.map(episode => {
+  const episodes = data.map((episode) => {
     return {
       id: episode.id,
       title: episode.title,
       thumbnail: episode.thumbnail,
       members: episode.members,
-      publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { locale: ptBR }),
+      publishedAt: format(parseISO(episode.published_at), "d MMM yy", {
+        locale: ptBR,
+      }),
       duration: Number(episode.file.duration),
-      durationAsString: convertDurationToTimeString(Number(episode.file.duration)),
+      durationAsString: convertDurationToTimeString(
+        Number(episode.file.duration)
+      ),
       url: episode.file.url,
-    }
-  })
+    };
+  });
 
   const latestEpisodes = episodes.slice(0, 2);
   const allEpisodes = episodes.slice(2, episodes.length);
@@ -146,8 +155,8 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       latestEpisodes,
-      allEpisodes
+      allEpisodes,
     },
     revalidate: 60 * 60 * 8,
-  }
-}
+  };
+};
