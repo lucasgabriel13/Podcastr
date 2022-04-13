@@ -1,15 +1,3 @@
+# ⚠️EM MANUTENÇÃO!!! 
 
-## ✨ Tecnologias Utilizadas
-
-- React
-- Next.js
-- TypeScript
-
-## 💻 Projeto
-
-
-
-## 🚀 Como executar
-
-
-
+Esse README está passando por alterações, retornará no dia 14/04/2022
