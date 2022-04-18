@@ -173,15 +173,73 @@
 }
 
 .homePage::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
+  width: 12px; /* width of the entire scrollbar */
 }
 
 .homePage::-webkit-scrollbar-track {
-  background: var(--white);        /* color of the tracking area */
+  background: var(--white); /* color of the tracking area */
 }
 
 .homePage::-webkit-scrollbar-thumb {
-  background-color: var(--green-500);    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid (var(--white));  /* creates padding around scroll thumb */
+  background-color: var(--green-500); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid (var(--white)); /* creates padding around scroll thumb */
+}
+
+@media screen and (max-width: 1438px) {
+  .homePage {
+    padding: 0 1rem;
+  }
+  .allEpisodes {
+    table {
+      th,
+      td {
+        &:nth-child(4) {
+          display: none;
+        }
+        &:nth-child(5) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .homePage {
+    padding: 0 1rem;
+    margin-bottom: 9rem;
+  }
+  .latestEpisodes {
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      li {
+        width: 100%;
+
+        .episodeDetails {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .allEpisodes {
+    table {
+      th,
+      td {
+        &:nth-child(3) {
+          display: none;
+        }
+        &:nth-child(4) {
+          display: none;
+        }
+        &:nth-child(5) {
+          display: none;
+        }
+      }
+    }
+  }
 }

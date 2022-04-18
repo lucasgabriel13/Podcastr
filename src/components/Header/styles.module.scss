@@ -1,4 +1,4 @@
-.headerContainer{
+.headerContainer {
   background: var(--white);
   height: 6.5em;
 
@@ -9,14 +9,28 @@
 
   border-bottom: 1px solid var(--gray-100);
 
-  p{
+  p {
     margin-left: 2rem;
-    padding:  0.25rem 0 0.25rem 2rem;
+    padding: 0.25rem 0 0.25rem 2rem;
     border-left: 1px solid var(--gray-100);
   }
 
-  span{
-    margin-left:auto;
+  span {
+    margin-left: auto;
     text-transform: capitalize;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .headerContainer {
+    padding: 0.5rem 1rem;
+    justify-content: space-around;
+    p {
+      display: none;
+    }
+
+    span {
+      margin-left: 25px;
+    }
   }
 }
