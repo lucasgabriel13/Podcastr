@@ -39,7 +39,7 @@ O projeto estará disponível pelo endereço: http://localhost:300
 
 ## 📝 License
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](https://github.com/lucasgabriel13/Podcastr/blob/main/license) para detalhes.
 
 
 
